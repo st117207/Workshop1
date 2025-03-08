@@ -24,7 +24,7 @@ int main() {
     float fx =round(sum / n * 1000) / 1000;
     float T = 1;
     //Относительная погрешность
-    float rerror = 5 * pow(10, -7.0) + 1 / (fx * 1000 * T) * 100;
+    float rerror = (5 * pow(10, -7.0) + 1 / (fx * 1000 * T)) * 100;
     //Абсолютная погрешность
     float aerror = rerror * fx * 1000 / 100;
     //Дисперсия
