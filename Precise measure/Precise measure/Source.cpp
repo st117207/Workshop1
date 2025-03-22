@@ -8,34 +8,34 @@
 #include <iomanip>
 
 
-void inputdata(double arr[], double n)
+void inputdata(double arr1[], double n)
 {
 	std::ifstream inputFile("Precise measurements.csv");
 	for (int i = 0; i < n; i++) {
-		inputFile >> arr[i];
+		inputFile >> arr1[i];
 	}
 }
-double arithmetic_mean(double arr[], double n)
+double arithmetic_mean(double arr1[], double n)
 {
 	double sum = 0;
 	for (int i = 0; i < n; i++) {
-		sum += arr[i];
+		sum += arr1[i];
 	}
 	double arithmetic = 0.0;
 	arithmetic = static_cast<double>(round(sum / n * 1000)) / 1000;
 	return arithmetic;
 }
-double relative_error(double arr[], double n)
+double relative_error(double arr1[], double n)
 {
-	double fx = arithmetic_mean(arr, n);
+	double fx = arithmetic_mean(arr1, n);
 	double T = 1;
 	double rerror = (5 * pow(10, -7.0) + 1 / (fx * 1000 * T)) * 100;
 	return rerror;
 }
-double absolute_error(double arr[], double n)
+double absolute_error(double arr1[], double n)
 {
-	double rerror = relative_error(arr, n);
-	double fx = arithmetic_mean(arr, n);
+	double rerror = relative_error(arr1, n);
+	double fx = arithmetic_mean(arr1, n);
 	double aerror = rerror * fx / 100;
 	return aerror;
 }
@@ -61,7 +61,7 @@ double root_mean_square_error_mean(double arr3[], double n)
 }
 double total_error(double arr1[], double arr3[], double n)
 {
-	return sqrt(pow(arithmetic_mean(arr1, n) / 3, 2) + pow(root_mean_square_error_mean(arr3, n), 2));
+	return sqrt(pow(absolute_error(arr1, n) / 3, 2) + pow(root_mean_square_error_mean(arr3, n), 2));
 }
 void outputdata(double arr1[], double arr2[], double arr3[], double n)
 {
